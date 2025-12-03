@@ -1,13 +1,21 @@
-
 graph = {
-    'A': ['B', 'C'],
-    'B': ['D', 'E'],
-    'C': ['F'],
-    'D': [],
-    'E': ['F'],
-    'F': []
+    'A': ['B', 'C', 'D'],
+    'B': ['E', 'F'],
+    'C': ['G'],
+    'D': ['H', 'I'],
+    'E': ['J'],
+    'F': ['J', 'K'],
+    'G': ['L'],
+    'H': ['M'],
+    'I': ['M', 'N'],
+    'J': ['O'],
+    'K': ['O', 'P'],
+    'L': ['P'],
+    'M': [],
+    'N': ['P'],
+    'O': [],
+    'P': []
 }
-
 
 # -------------------------------
 # DFS RECURSIVO
@@ -16,8 +24,8 @@ def dfs_recursive(graph, node, visited=None):
     if visited is None:
         visited = set()
 
-    print(node, end=" ")      # Mostra o nó visitado
-    visited.add(node)         # Marca como visitado
+    print(node, end=" ")      
+    visited.add(node)         
 
     for neighbor in graph[node]:
         if neighbor not in visited:
@@ -29,19 +37,19 @@ def dfs_recursive(graph, node, visited=None):
 # -------------------------------
 def dfs_iterative(graph, start):
     visited = set()
-    stack = [start]        # Começa colocando o nó inicial na pilha
+    stack = [start]
 
     while stack:
-        node = stack.pop()  # Remove o último elemento (profundidade)
+        node = stack.pop()
 
         if node not in visited:
             print(node, end=" ")
             visited.add(node)
 
-            # Adiciona vizinhos na pilha (invertido para manter ordem)
             for neighbor in reversed(graph[node]):
                 if neighbor not in visited:
                     stack.append(neighbor)
+
 
 print("DFS Recursivo:")
 dfs_recursive(graph, 'A')
